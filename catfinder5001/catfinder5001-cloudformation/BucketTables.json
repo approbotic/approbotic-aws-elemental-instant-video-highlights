@@ -246,10 +246,43 @@
                                     ],
                                     "Resource": [
                                         {
-                                            "Fn::Sub": "arn:aws:s3:::${SourceBucket}"
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:s3:::",
+                                                    {
+                                                        "Fn::Join": [
+                                                            "-",
+                                                            [
+                                                                {"Fn::Sub": "${SourceBucket}"},
+                                                                {
+                                                                    "Ref": "AWS::Region"
+                                                                }
+                                                            ]
+                                                        ]
+                                                    }
+                                                ]
+                                            ]
                                         },
                                         {
-                                            "Fn::Sub": "arn:aws:s3:::${SourceBucket}/${SourcePrefix}/*"
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:s3:::",
+                                                    {
+                                                        "Fn::Join": [
+                                                            "-",
+                                                            [
+                                                                {"Fn::Sub": "${SourceBucket}"},
+                                                                {
+                                                                    "Ref": "AWS::Region"
+                                                                }
+                                                            ]
+                                                        ]
+                                                    },
+                                                    "/cf5k/website/*"
+                                                ]
+                                            ]
                                         }
                                     ]
                                 },
